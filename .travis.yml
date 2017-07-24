@@ -23,7 +23,7 @@ after_script:
   - git config user.email "roger_ren@qq.com"
   - git add .
   - git commit -m "Travis automatic update"
-  - git push --force --quiet "https://${REPO_TOKEN}@${REPO}" master:master
+  - git push --force --quiet "https://${TOKEN}@${REPO}" master:master
 # E: Build LifeCycle
 
 branches:
