@@ -18,6 +18,7 @@ script:
 
 after_script:
   - cd ./public
+  - echo "http://rogerabyss.top/" > CNAME
   - git init
   - git config user.name "RogerAbyss"
   - git config user.email "roger_ren@qq.com"
