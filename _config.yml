@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Abyss`s Blog
-subtitle: test
-description: test
+title: Abyss
+subtitle: 
+description: "A Lazy IOS Programmer, Abyss`s Blog"
 author: Abyss
 language: zh-Hans
 timezone: Asia/Chongqing
 
 # URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://rogerabyss.github.io/
+## https://rogerabyss.github.io/
+url: http://rogerabyss.top/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -72,7 +72,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: abyss
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

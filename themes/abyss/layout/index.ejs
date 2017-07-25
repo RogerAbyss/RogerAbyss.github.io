@@ -1,0 +1,75 @@
+<div class="sidebar">
+  <div class="sidebar-inner-index">
+    <ul class="main-menu">
+      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+    </ul>
+  </div>
+</div>
+
+<div id="hero">
+  <div class="inner">
+    <div class="left">
+      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>">
+    </div><div class="right">
+      <h2 class="vue">Abyss</h2>
+      <h1>
+        A Lazy IOS Programmer<br>Abyss`s Blog
+      </h1>
+      <p>
+        <a class="button" href="<%- url_for("/v2/guide/") %>">MY PROFILE</a>
+        <a class="button white" href="https://github.com/RogerAbyss" target="_blank">GITHUB</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="highlights">
+  <div class="inner">
+    <div class="point">
+      <h2>text1</h2>
+      <p>sub1</p>
+    </div>
+
+    <div class="point">
+      <h2>text2</h2>
+      <p>sub2</p>
+    </div>
+
+    <div class="point">
+      <h2>text3</h2>
+      <p>
+      sub3
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="sponsors">
+  <div class="inner">
+    <h3>THANKS OPEN SOURCES</h3>
+    <%- partial('partials/sponsors') %>
+    <br>
+    <a class="become-sponsor button white" href="<%- url_for("/support-vuejs/") %>">THANKS LIST</a>
+  </div>
+</div>
+
+<div id="footer">
+  <a href="https://www.shuttleworthfoundation.org/fellows/flash-grants/" target="_blank">
+    <img src="/images/shuttleworth.png" style="width:200px">
+  </a>
+  <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a><br>
+  Copyright &copy; 2017-<%- new Date().getFullYear() %> Abyss</p>
+</div>
+
+<script>
+var topScrolled = false
+window.addEventListener('scroll', function () {
+  if (window.pageYOffset > 165 && !topScrolled) {
+    topScrolled = true
+    document.getElementById('mobile-bar').classList.remove('top')
+  } else if (window.pageYOffset <= 165 && topScrolled) {
+    topScrolled = false
+    document.getElementById('mobile-bar').classList.add('top')
+  }
+})
+</script>

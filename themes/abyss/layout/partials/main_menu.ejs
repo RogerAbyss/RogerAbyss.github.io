@@ -1,0 +1,13 @@
+<li>
+  <form id="search-form">
+    <input type="text" id="search-query-<%- context %>" class="search-query st-default-search-input">
+  </form>
+</li>
+<li><a href="<%- url_for("/v2/guide/") %>" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">title1</a></li>
+<li><a href="<%- url_for("/v2/api/") %>" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">title2</a></li>
+<li><a href="<%- url_for("/v2/examples/") %>" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">title3</a></li>
+<%- partial('partials/ecosystem_dropdown') %>
+<%- partial('partials/language_dropdown') %>
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">title6</a>
+</li>
