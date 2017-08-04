@@ -13,6 +13,7 @@
     <img src="/images/feed.png" style="width:15px;height:15px">
   </a>
 </p>
+
 <% site.posts.sort('date', -1).each(function (post) { %>
     <div class="post">
         <h2><a href="/<%- post.path %>"><%- post.title %></a></h2>
