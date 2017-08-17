@@ -44,6 +44,7 @@ IOS开发工程师, **工作经验3年以上**, 重庆
     - Ruby, 一些日常脚本, 提高效率
     - Swift, 项目开发次要语言, 本地测试服务端搭建
     - Shell, 常用脚本, linux
+    - Docker, 云上部署SS、Ftp等
 
 - 正在学习
     - JavaScript, 博客维护, React-Nativa项目
