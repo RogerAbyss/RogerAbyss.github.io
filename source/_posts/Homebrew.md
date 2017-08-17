@@ -125,17 +125,16 @@ wget
 yarn
 zookeeper
 ```
-http://localhost:4000/2017/08/04/Homebrew/src/brew.png
-http://localhost:4000/backend/syso_files/con1-bg1.png
+
 ## 进阶玩法
 
-### LaunchRocket
+* **LaunchRocket**
 
 ![brew rocket](/src/brewRocket.png)
 [下载地址](https://github.com/jimbojsb/launchrocket)
 
-**使用xcode运行安装**
+``使用xcode运行安装``
 
-### Cakebrew
+* **Cakebrew**
 
 Cakebrew是一款图形化管理homebrew的软件, 我没有用。大家可以自己找找。
