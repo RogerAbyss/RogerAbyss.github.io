@@ -52,6 +52,39 @@
   </div>
 </div>
 
+<div id = "highlights">
+  <div class = "inner">
+    <div class = "point">
+      <h2>Motto</h2>
+      <p>种一棵树最佳的时间是十年前, 或者<b>现在</b>。
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id = "bannerSection">
+    <div class="banner">
+      <div class="banner-left">
+        <img src="images/border-left.png" alt="">
+        <div class="box">
+          <h2>
+            <b>Lifestyle</b>
+            生活方式
+          </h2>
+          <h3>简单即是生活</h3>
+          <p>我喜欢编程, 喜欢听歌, 喜欢宠物</p>
+          <p>我喜欢生活简单到极致</p>
+        </div>
+      </div>
+      <div class="banner-right">
+        <video src="http://zgxl-server.oss-cn-hangzhou.aliyuncs.com/VOD/1.mp4" preload="auto" autoplay loop muted>
+          <source src="http://zgxl-server.oss-cn-hangzhou.aliyuncs.com/VOD/1.mp4" type="video/mp4"/>
+          您的浏览器不支持 video 标签。
+        </video>
+      </div>
+    </div>
+</div>
+
 <div id="sponsors">
   <div class="inner">
     <h3>THANKS OPEN SOURCES</h3>
@@ -74,15 +107,20 @@
   <p>Email: roger_ren@qq.com</p>
 </div>
 
+<script src="js/jquery-3.2.1.min.js"></script>
 <script>
-var topScrolled = false
-window.addEventListener('scroll', function () {
-  if (window.pageYOffset > 165 && !topScrolled) {
-    topScrolled = true
-    document.getElementById('mobile-bar').classList.remove('top')
-  } else if (window.pageYOffset <= 165 && topScrolled) {
-    topScrolled = false
-    document.getElementById('mobile-bar').classList.add('top')
-  }
-})
+
+$("ducument").ready(resize());
+window.onload=function(){
+    window.onresize=resize
+    resize()
+}
+function resize() {
+    var width = $(".banner-right").offset().left + 240;
+
+    console.log(width)
+    width = Math.max(width, 700)
+    console.log(width)
+    $(".banner-left").css("width",width+"px");
+}
 </script>
