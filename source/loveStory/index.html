@@ -42,7 +42,9 @@
 <script src="js/lunar.js"></script>
 <script>
     // 时间计算逻辑
-    var startDate = chineseLunar.lunarToSolar(2017,7,7);
+    // var startDate = chineseLunar.lunarToSolar(2017,7,7);
+    var startDate = new Date(2017,5,4);
+    console.log(startDate);
 
     var sec = 1000;
     var min = sec*60;
@@ -94,6 +96,7 @@
 
     var storyCount = 0;
     var stories = ["以后我会在这里会记录我们的一点一滴。",
+                   "从2017年6月4日开始,第一次亲你(害羞), "
                    "第一个七夕情人节快乐！你到青岛旅游, 我在加班!",
                    "第一个生日礼物:Ohana萌系少女香水, 瓶子好好看!"];
 
