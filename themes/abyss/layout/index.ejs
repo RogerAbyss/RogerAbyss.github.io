@@ -16,7 +16,7 @@
         A Lazy IOS Programmer<br>Abyss`s Blog
       </h1>
       <p>
-        <a class="button" href="<%- url_for("/v2/guide/") %>">MY PROFILE</a>
+        <a class="button" href="<%- url_for("/404/") %>">MY PROFILE</a>
         <a class="button white" href="https://github.com/RogerAbyss" target="_blank">GITHUB</a>
       </p>
     </div>
@@ -88,19 +88,13 @@
 <div id="sponsors">
   <div class="inner">
     <h3>THANKS OPEN SOURCES</h3>
-    <!-- 
-    <%- partial('partials/sponsors') %>
-    -->
     <br>
     <a class="become-sponsor button white" href="<%- url_for("/support-vuejs/") %>">MY OPEN SOURCES</a>
   </div>
 </div>
 
 <div id="footer">
-  <a href="https://www.shuttleworthfoundation.org/fellows/flash-grants/" target="_blank">
-    <!-- 
-    <img src="/images/shuttleworth.png" style="width:200px">
-    -->
+  <a href="<%- url_for("/404/") %>" target="_self">
   </a>
   <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a><br>
   Copyright &copy; 2017-<%- new Date().getFullYear() %> Abyss</p>
