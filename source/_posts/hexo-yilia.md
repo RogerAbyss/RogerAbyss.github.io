@@ -26,9 +26,12 @@ tags: [前端,CI]
 - [x] 主题yilia
 - [x] travis CI
 
+<br>
+
 ## 第一步 准备环境
 
-**以下环境为MacOS的安装环境, 如果是Linux或者Windows系统请按步骤根据官方文档自己安装环境**
+**以下环境为MacOS的安装环境, 
+如果是Linux或者Windows系统请按步骤根据官方文档自己安装环境**
 
 安装node环境, [homebrew官网](https://brew.sh/index_zh-cn.html)
 ```
@@ -53,6 +56,8 @@ hexo
 
 注册一个github账号, [github](https://github.com)
 准备一个文本编辑器, 本人推荐**vscode**,**webstorm**
+
+<br>
 
 ## 开始创建博客
 
@@ -82,6 +87,8 @@ hexo s
 
 好像有哪里不对？
 **对, 不好看！**
+
+<br>
 
 ## 使用好看的yilia主题
 
@@ -118,43 +125,11 @@ hexo s
 打开http://localhost:4000/
 看看我们的博客吧！
 
-## 如何使用hexo维护我们的博客
-
-**授人以鱼不如授人以渔**
-
-#### node.js
-
-hexo是一个基于node.js的框架, 所以我们首先要有一点node.js的知识。
-常用的使用npm,yarn的姿势应该要有。
-node_modules里面就是node.js的包, ```npm install```重新安装依赖可以解决大部分问题。
-
-附:
-- [node.js中文网](http://nodejs.cn)
-
-#### hexo - config.yml
-
-配置文件``config.yml``, 管理了大部分功能。
-可以参考我的博客``dev``分支, 我给了大部分config.yml的注释, 欢迎大家指正。
-
-附:
-- [我的博客源码](https://github.com/RogerAbyss/RogerAbyss.github.io/tree/dev)
-
-#### hexo - _posts
-
-位于``source/_posts``目录下就是我们的博文了。
-博文是.md格式大家都知道了, 下面给大家讲讲简单的功能
-``title: 标题``
-``date:  日期``
-``tags:  标签``
-``<!--more--> 折叠文章``
-
-#### hexo - 其他
-
-我遇到过这样的情况, 因为整个博客都是约定好的theme。
-如果我需要新建一个页面, 里面所有的css都是我自己重新构思的呢？
-根目录``config.yml``里``skip_render:``设置, 可以跳过模板的渲染。
+<br>
 
 ## 利用Travis C, 自动构建发布到web
+
+<br>
 
 **开通Github Pages**
 
@@ -163,6 +138,8 @@ node_modules里面就是node.js的包, ```npm install```重新安装依赖可以
 ![github-pages](/asserts/github-pages.png)
 (可选)GitHub访问速度并不快, 我们可以申请一个域名, 指向一个CNAME。
 在根目录source里面, 创建一个空文件, 输入``{你的域名}``。
+
+<br>
 
 **开通/配置Travis CI**
 
@@ -179,10 +156,57 @@ node_modules里面就是node.js的包, ```npm install```重新安装依赖可以
 分支``dev2``出来并且清空``master``分支, 我们的目的是, dev分支负责开发, master分支只包含博客代码。
 详情参考我dev2分支的travis CI, 我写了详细的注释, 更多姿势请移步[Travis CI官方文档](https://docs.travis-ci.com)。
 
+<br>
+
 **大功告成, 现在git commit&push, 收到一封ravis CI成功的邮件, 看看我们的网站吧**
+
+<br>
+
+---
+
+## 授人以鱼不如授人以渔,如何维护我们的博客
+
+<br>
+
+**关于node.js**
+
+hexo是一个基于node.js的框架, 所以我们首先要有一点node.js的知识。
+常用的使用npm,yarn的姿势应该要有。
+node_modules里面就是node.js的包, ```npm install```重新安装依赖可以解决大部分问题。
+附: [node.js中文网](http://nodejs.cn)
+
+<br>
+
+**关于onfig.yml**
+
+配置文件``config.yml``, 管理了大部分功能。
+可以参考我的博客``dev``分支, 我给了大部分config.yml的注释, 欢迎大家指正。
+附: [我的博客源码](https://github.com/RogerAbyss/RogerAbyss.github.io/tree/dev)
+
+<br>
+
+**关于_posts**
+
+位于``source/_posts``目录下就是我们的博文了。
+博文是.md格式大家都知道了, 下面给大家讲讲简单的功能
+``title: 标题``
+``date:  日期``
+``tags:  标签``
+``<!--more--> 折叠文章``
+
+<br>
+
+## 其他问题解答
+
+#### 我需要新建页面, 不基于themes的模板该怎么办?
+
+如果我需要新建一个页面, 里面所有的css都是我自己重新构思的呢？
+根目录``config.yml``里``skip_render:``设置, 可以跳过模板的渲染。
                                            
 
 <br>
+
 ---
+
 **如果你有任何的问题, 可以email我, 有空的时候我会回复**
 **如果你觉得对你有帮助, 可以点击支持我一杯咖啡, 我会继续更新一些有用的东西**
