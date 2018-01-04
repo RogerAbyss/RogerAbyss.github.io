@@ -1,11 +1,11 @@
 ---
-title: hexo+yilia+travis+github 简洁至上的个人博客
+title: Hexo+Yilia+travis+github 个人博客 简洁至上
 date: 2018-01-04 1:39:04
 tags: [前端,CI]
 ---
 <img width="600" height="600" src="/asserts/heox.png"/>
 
-**[Demo](http://rogerabyss.top/), 欢迎Star我**
+**[Demo](http://rogerabyss.top), 欢迎Star我**
 [please star me!!](https://github.com/RogerAbyss/RogerAbyss.github.io)
 
 我们准备用**hexo+yilia+travis** 搭建一个**简洁至上的个人博客**
@@ -45,16 +45,19 @@ brew install node
 brew install git
 ```
 
-安装hexo, [hexo官网](https://hexo.io/)
+安装hexo, [hexo官网](https://hexo.io)
 ```
 npm install hexo-cli -g
 hexo
 ```
 
-注册一个github账号, [github](https://github.com/)
+注册一个github账号, [github](https://github.com)
 准备一个文本编辑器, 本人推荐**vscode**,**webstorm**
 
 ## 开始创建博客
+
+**创建代码仓库**
+在github上创建一个代码仓库, 名称``xxx.github.io``, 将来将会用这个地址打开博客。
 
 **在哪里搞事情?**
 就在桌面吧, 打开**Terminal**
@@ -64,6 +67,8 @@ hexo
 cd ~/Desktop
 # 创建一个文件夹 blog
 mkdir blog && cd blog
+# 克隆代码仓库
+git clone https://{仓库地址}
 # 创建博客模板
 hexo init
 # 生成静态文件
@@ -80,7 +85,7 @@ hexo s
 
 ## 使用好看的yilia主题
 
-**不喜欢也可以自己找其他主题**,[找主题](https://hexo.io/themes/)
+**不喜欢也可以自己找其他主题**,[找主题](https://hexo.io/themes)
 
 在刚刚创建的blog目录下,下载yilia
 ```
@@ -89,6 +94,10 @@ cd ~/Desktop/blog
 
 # 下载yilia
 git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia
+
+# 删除.git, 这样才能提交
+cd themes/yilia
+rm -rf .git
 ```
 
 修改根目录下的``_config.yml``,搜索``theme=``修改为``theme=yilia``
@@ -117,10 +126,10 @@ hexo s
 
 hexo是一个基于node.js的框架, 所以我们首先要有一点node.js的知识。
 常用的使用npm,yarn的姿势应该要有。
-node_modules里面就是node.js的包, npm install重新安装依赖可以解决大部分问题。
+node_modules里面就是node.js的包, ```npm install```重新安装依赖可以解决大部分问题。
 
 附:
-- [node.js中文网](http://nodejs.cn/)
+- [node.js中文网](http://nodejs.cn)
 
 #### hexo - config.yml
 
@@ -145,8 +154,33 @@ node_modules里面就是node.js的包, npm install重新安装依赖可以解决
 如果我需要新建一个页面, 里面所有的css都是我自己重新构思的呢？
 根目录``config.yml``里``skip_render:``设置, 可以跳过模板的渲染。
 
-## Travis CI集成
+## 利用Travis C, 自动构建发布到web
 
+**开通Github Pages**
+
+我们将利用``github pages``充当空间存放我们的个人博客。
+进入我们仓库的``setting``, 打开``GitHub Pages``。
+![github-pages](/asserts/github-pages.png)
+(可选)GitHub访问速度并不快, 我们可以申请一个域名, 指向一个CNAME。
+在根目录source里面, 创建一个空文件, 输入``{你的域名}``。
+
+**开通/配置Travis CI**
+
+[Travis CI官网](https://travis-ci.org)
+
+通过github账号可以开通Travis CI, 享受开源完全免费。
+
+我们需要在``Github->setting->Developer settings->Personal access tokens``生成一个repo访问权限的token。
+![github-toekn](/asserts/github-token.png)
+然后在Travis CI, 里开启此仓库的开关, 并且设置环境变量, 毕竟你不想密码被别人看到吧。
+![traivs-setting](/asserts/travis-setting.png)
+在文件根目录, 创建Travis配置文件``.travis.yml``。
+
+分支``dev2``出来并且清空``master``分支, 我们的目的是, dev分支负责开发, master分支只包含博客代码。
+详情参考我dev2分支的travis CI, 我写了详细的注释, 更多姿势请移步[Travis CI官方文档](https://docs.travis-ci.com)。
+
+**大功告成, 现在git commit&push, 收到一封ravis CI成功的邮件, 看看我们的网站吧**
+                                           
 
 <br>
 ---

@@ -1,18 +1,23 @@
+# node_js环境
 language: node_js
 node_js: stable
 
+# 缓存
 cache:
   directories:
     - node_modules
 
+# 安装包依赖
 install:
   - npm install
 
 before_script:
 
+# 生成代码
 script:
   - hexo g
 
+# 提交代码
 after_script:
   - cd ./public
   - git init
@@ -22,10 +27,12 @@ after_script:
   - git commit -m "Travis automatic update"
   - git push --force --quiet "https://${TOKEN}@${REPO}" master:master
 
+# 只在dev2分支生效
 branches:
   only:
     - dev2
 
+# 环境变量
 env:
  global:
    - REPO: github.com/RogerAbyss/RogerAbyss.github.io.git
