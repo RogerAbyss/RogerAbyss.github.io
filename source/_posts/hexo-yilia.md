@@ -1,211 +1,251 @@
 ---
 title: Hexo+Yilia+travis+github 个人博客 简洁至上
-date: 2018-01-04 1:39:04
+date: 2018-01-05 1:39:04
 tags: [前端,CI]
 ---
-<img width="600" height="600" src="/asserts/heox.png"/>
+<img width="400" height="350" src="/asserts/heox.png"/>
 
-**[Demo](http://rogerabyss.top), 欢迎Star我**
-[please star me!!](https://github.com/RogerAbyss/RogerAbyss.github.io)
+不需要域名, 不需要租用空间或者服务器
+**全免费**搭建简洁至上的个人博客。
 
-我们准备用**hexo+yilia+travis** 搭建一个**简洁至上的个人博客**
-**我们不需要域名, 不需要空间或者服务器, 只需要一个github账号**
-我们只需要本地修改测试代码然后提交git, **使用travis CI自动上传到github**
-
-<!--more-->
-
-## 准备工作
-
-- [x] 一颗想搞事的心
-- [x] 一点点编程基础
-- [x] node环境
-- [x] git环境
-- [x] hexo框架
-- [x] 一个github账号
-- [x] 一个文本编辑器
-- [x] 主题yilia
-- [x] travis CI
+<!--more-->  
 
 <br>
+# 准备工作
 
-## 第一步 准备环境
+- 一颗想搞事的心和一点点编程基础
+- 环境: node, git
+- 框架: hexo
+- 服务商: github, travis
+- 工具: 文本编辑器
+- 其他: yilia
 
-**以下环境为MacOS的安装环境, 
-如果是Linux或者Windows系统请按步骤根据官方文档自己安装环境**
+**本文章所有操作在Macos系统下完成, 其他系统请参考步骤自己动手!!**
+<br>
 
-安装node环境, [homebrew官网](https://brew.sh/index_zh-cn.html)
+<br>
+### 开始安装环境
+
+**你可能需要安装homebrew**
 ```
 # 如果你有homebrew, 跳过此步骤
 # 安装homebrew, MacOS包管理软件
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
 
+**1.安装node环境**
+```
 # 安装node
 brew install node
 ```
 
-安装git
+**2.安装git环境**
 ```
+# 安装node
 brew install git
 ```
 
-安装hexo, [hexo官网](https://hexo.io)
+**3.安装hexo环境**
 ```
 npm install hexo-cli -g
 hexo
 ```
 
-注册一个github账号, [github](https://github.com)
-准备一个文本编辑器, 本人推荐**vscode**,**webstorm**
+<br>
+### 附录
 
+- 科学上网-[如何科学上网](https://www.textarea.com/ExpectoPatronum/shiyong-shadowsocks-kexue-shangwang-265)
+- MacOS包管理器-[homebrew官网](https://brew.sh/index_zh-cn.html)
+- 搭建微型服务器-[node.js官网](https://nodejs.org/zh-cn)
+- 版本控制-[git官网](https://git-scm.com)
+- 好用的博客框架-[hexo官网](https://hexo.io)
+- 来注册一个-[github官网](https://github.com)
+- 我推荐的编辑器-[vscode官网](https://code.visualstudio.com)
+- 我推荐的IDE-[webstorm官网](https://www.jetbrains.com/webstorm)
 <br>
 
-## 开始创建博客
+<br>
+# 用hexo创建博客
 
-**创建代码仓库**
-在github上创建一个代码仓库, 名称``xxx.github.io``, 将来将会用这个地址打开博客。
+<br>
+### github创建代码仓库
 
-**在哪里搞事情?**
-就在桌面吧, 打开**Terminal**
+在github上创建一个代码仓库, 如果你想取名:``xxx``,
+建议名称:``xxx.github.io``,将来将会用这个地址打开博客。
 
+将仓库到克隆到本地, 你可以使用``版本管理工具``, 也可以直接
 ```
-# 进入桌面
-cd ~/Desktop
-# 创建一个文件夹 blog
-mkdir blog && cd blog
+# 进入桌面,创建目录并且进入目录
+cd ~/Desktop && mkdir blog && cd blog
 # 克隆代码仓库
 git clone https://{仓库地址}
-# 创建博客模板
-hexo init
-# 生成静态文件
-hexo g
-# 启动node.js服务器
-hexo s
 ```
-
-打开http://localhost:4000/
-看看我们的博客吧！
-
-好像有哪里不对？
-**对, 不好看！**
 
 <br>
+### 创建博客 
 
-## 使用好看的yilia主题
+在仓库的根目录``hexo init``初始化博客。
 
-**不喜欢也可以自己找其他主题**,[找主题](https://hexo.io/themes)
+- 生成静态web页面 ``hexo g``
+- 运行服务器 ``hexo s``
+- 清理缓存 ``hexo clean``
 
-在刚刚创建的blog目录下,下载yilia
+<br>
+运行过``hexo g && hexo s``, 
+**打开http://localhost:4000/ 看看我们的博客吧!**
+
+<br>
+是不是有哪里不对?
+和我宣传的效果有点不一样对吧？
+因为这只是hexo默认的主题。
+
+<br>
+**不要忘记``git add . && git commit && git push``提交仓库哦**
+
+<br>
+### 附录
+
+- 我推荐的版本管理工具-[SourceTree](https://www.sourcetreeapp.com)
+- node的包管理工具-[npm](https://www.npmjs.com.cn)
+<br>
+
+<br>
+# 使用yilia主题
+
+**如果不喜欢Yilia, 可以在附录找其他主题**
+
+<br>
+### 安装Yilia主题
+
+在仓库的根目录下,下载yilia
 ```
-# 进入刚刚的目录
-cd ~/Desktop/blog
-
-# 下载yilia
 git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia
+```
 
-# 删除.git, 这样才能提交
+git clone下来需要删除``.git``文件夹, 才能正确的进入仓库的git版本管理
+```
 cd themes/yilia
 rm -rf .git
 ```
 
-修改根目录下的``_config.yml``,搜索``theme=``修改为``theme=yilia``
-关于yilia目录内的``config.yml``, 可以参考[yilia](https://github.com/litten/hexo-theme-yilia)
-
-大功告成！
+<br>
+这样子根目录结构如下
 ```
-# Ctrl+C 关闭之后进行下面的操作
-
-# 清理缓存
-hexo clean
-
-# 重新运行
-hexo g
-hexo s
+.
+├── _config.yml             # 配置文件
+├── db.json
+├── node_modules            # npm管理的项目依赖包
+├── package-lock.json       # npm依赖列包环境的lock
+├── package.json            # npm依赖包列表
+├── public                  # web页面
+├── scaffolds           
+├── source                  # 资源文件等的文件存放
+├── themes                  # 主题
+└── yarn.lock
 ```
 
-打开http://localhost:4000/
-看看我们的博客吧！
+<br>
+### 配置项目
+
+修改根目录下的``_config.yml``配置文件
+
+- 使用yilia主题，``theme: yilia``
+- 修改网页名字, ``title: {title}``
+- 修改副标题, ``subtitle: {subtitle}``
+- 署上你的大名, ``author: {author}``
+- 修改语言, ``language: zh-Hans``
+- 修改时区, ``timezone: Asia/Chongqing``
+
+**更多配置, 移步附录查看我的项目(有详细的注释哦！)**
 
 <br>
+**大功告成！打开http://localhost:4000/ 看看我们的博客吧!**
 
-## 利用Travis C, 自动构建发布到web
-
-<br>
-
-**开通Github Pages**
-
-我们将利用``github pages``充当空间存放我们的个人博客。
-进入我们仓库的``setting``, 打开``GitHub Pages``。
-![github-pages](/asserts/github-pages.png)
-(可选)GitHub访问速度并不快, 我们可以申请一个域名, 指向一个CNAME。
-在根目录source里面, 创建一个空文件, 输入``{你的域名}``。
 
 <br>
+### 附录
 
-**开通/配置Travis CI**
-
-[Travis CI官网](https://travis-ci.org)
-
-通过github账号可以开通Travis CI, 享受开源完全免费。
-
-我们需要在``Github->setting->Developer settings->Personal access tokens``生成一个repo访问权限的token。
-![github-toekn](/asserts/github-token.png)
-然后在Travis CI, 里开启此仓库的开关, 并且设置环境变量, 毕竟你不想密码被别人看到吧。
-![traivs-setting](/asserts/travis-setting.png)
-在文件根目录, 创建Travis配置文件``.travis.yml``。
-
-分支``dev2``出来并且清空``master``分支, 我们的目的是, dev分支负责开发, master分支只包含博客代码。
-详情参考我dev2分支的travis CI, 我写了详细的注释, 更多姿势请移步[Travis CI官方文档](https://docs.travis-ci.com)。
+- hexo-config.yml配置, [我的配置](https://github.com/RogerAbyss/RogerAbyss.github.io/blob/dev2/_config.yml)
+- yilia-config.yml配置, [我的配置](https://github.com/RogerAbyss/RogerAbyss.github.io/blob/dev2/themes/yilia/_config.yml)
 
 <br>
+# 集成Travis CI
 
-**大功告成, 现在git commit&push, 收到一封ravis CI成功的邮件, 看看我们的网站吧**
+
+根目录下创建``.travis.yml``配置文件。
+
+- 设置node.js语言, ``language: node_js``
+- 设置依赖包环境, 
+```
+install:
+    - npm install
+```
+- 设置脚本, 
+```
+script:
+  - hexo g
+```
+- 设置分支, 只在``dev2``分支生效,``dev2``开发->推送到``master``
+```
+branches:
+  only:
+    - dev2
+```
+- 设置环境变量${REPO}
+```
+env:
+ global:
+   - REPO: github.com/RogerAbyss/RogerAbyss.github.io.git
+```
+- Github生成访问repo的token, 在travis里设置token的环境变量${TOKEN}
+- 设置提交脚本, git通过${TOEKN},${REPO}提交到master分支
+```
+  - cd ./public
+  - git init
+  - git config user.name "RogerAbyss"
+  - git config user.email "roger_ren@qq.com"
+  - git add .
+  - git commit -m "Travis automatic update"
+  - git push --force --quiet "https://${TOKEN}@${REPO}" master:master
+```
 
 <br>
+**大功告成, 等待travis CI运行完毕看看我们的网站吧``https://xxx.github.io``**
 
+<br>
+### 附录
+
+- Travis-[Travis CI官网]()
+- Travis CI教程-[如何配置Travis CI]()
+- 我的.travis.yml-[for docker]()
+- 我的.travis.yml-[for node]()
+- 我的.travis.yml-[for oc]()
+
+<br>
+# 其他问题
+
+- 如何写文章? 答: markdown
+- 文章日期,分类,标签怎么来? 答: 看文档
+```
 ---
+title: ${title}         # 标题
+date: ${date}           # 日期
+tags: [tag1,tag2]       # 标签
+---
+```
+- 如何控制打开全文在哪里? 答: ``<!--more-->``标签
+- 图片不能控制大小? 答: markdown不能, 使用html标签
+- 部分页面不想套用主题怎么办? 答: 根目录下``config.yml``下的``skip_render:``
 
-## 授人以鱼不如授人以渔,如何维护我们的博客
-
-<br>
-
-**关于node.js**
-
-hexo是一个基于node.js的框架, 所以我们首先要有一点node.js的知识。
-常用的使用npm,yarn的姿势应该要有。
-node_modules里面就是node.js的包, ```npm install```重新安装依赖可以解决大部分问题。
-附: [node.js中文网](http://nodejs.cn)
 
 <br>
+### 附录
 
-**关于onfig.yml**
-
-配置文件``config.yml``, 管理了大部分功能。
-可以参考我的博客``dev``分支, 我给了大部分config.yml的注释, 欢迎大家指正。
-附: [我的博客源码](https://github.com/RogerAbyss/RogerAbyss.github.io/tree/dev)
+- markdown语法-[如何使用markdown?](http://wowubuntu.com/markdown/#list)
+- 优雅的配置文件yaml语法-[yaml官网](http://www.yaml.org)
 
 <br>
-
-**关于_posts**
-
-位于``source/_posts``目录下就是我们的博文了。
-博文是.md格式大家都知道了, 下面给大家讲讲简单的功能
-``title: 标题``
-``date:  日期``
-``tags:  标签``
-``<!--more--> 折叠文章``
-
 <br>
-
-## 其他问题解答
-
-#### 我需要新建页面, 不基于themes的模板该怎么办?
-
-如果我需要新建一个页面, 里面所有的css都是我自己重新构思的呢？
-根目录``config.yml``里``skip_render:``设置, 可以跳过模板的渲染。
-                                           
-
-<br>
-
 ---
 
 **如果你有任何的问题, 可以email我, 有空的时候我会回复**
