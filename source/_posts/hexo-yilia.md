@@ -10,6 +10,9 @@ tags: [前端,CI]
 
 <!--more-->  
 
+**观看博客[Demo](http://rogerabyss.top)**
+**你觉得不错,保存并且[Star Me!](https://github.com/RogerAbyss/RogerAbyss.github.io)**
+
 <br>
 # 准备工作
 
@@ -248,5 +251,6 @@ tags: [tag1,tag2]       # 标签
 <br>
 ---
 
+**你看到了结尾, 说明我的文章对你是有帮助的！我感到非常荣幸。**
 **如果你有任何的问题, 可以email我, 有空的时候我会回复**
 **如果你觉得对你有帮助, 可以点击支持我一杯咖啡, 我会继续更新一些有用的东西**
