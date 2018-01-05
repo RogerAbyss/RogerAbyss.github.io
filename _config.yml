@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Abyss`s Blog
+title: rogerabyss.github.io
 subtitle: 一个很懒的IOS程序员的博客
 description:
 author: Abyss
@@ -12,7 +12,7 @@ timezone: Asia/Chongqing
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://rogerabyss.top/
+url: http://rogerabyss.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
