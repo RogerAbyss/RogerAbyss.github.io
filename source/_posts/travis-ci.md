@@ -14,8 +14,14 @@ tags: [CI]
 <br>
 # 开启Travis CI开源版
 
+
+注册github账号, 进入Travis CI官网并开通Travis CI.
+
 <br>
 ### 附录
+
+- 注册github-[github官网]()
+- 开通Travis-[Travis CI]()
 
 <br>
 # Travis 初级使用
