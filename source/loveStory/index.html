@@ -1,1 +1,144 @@
-end
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LoveStory</title>
+    <link rel="stylesheet" href="css/index.css">
+    <meta name="viewport" content="width=device-width,init-scale=1,user-scalable=no"/>
+</head>
+
+<body>
+    <audio src="./music.mp3" autoplay="true" loop="loop"></audio>
+    <div class="background">
+        <div class="box">
+            <div class="title">
+                the times we together
+            </div>
+            <div class="sub">
+                Abyss & Baobao
+                <br>loving on the way.
+            </div>
+
+            <div class="time">
+                <span id="day" class="time"></span>
+                /
+                <span id="hour" class="time"></span>
+                /
+                <span id="minute" class="time"></span>
+                /
+                <span id="second" class="time"></span>
+            </div>
+            <div class="timeDescription">
+                days/hours/min/sec
+            </div>
+            <div id="story" class="story">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="js/lunar.js"></script>
+<script>
+    // 时间计算逻辑
+    // var startDate = chineseLunar.lunarToSolar(2017,7,7);
+    var startDate = new Date(2017,5,4);
+    console.log(startDate);
+
+    var sec = 1000;
+    var min = sec*60;
+    var hour = min*60;
+    var day = hour*24;
+
+    var timer_time = setInterval(function () {
+        var now = new Date()
+
+        var ret = Date.parse(now) - Date.parse(startDate)
+
+        $("#day").html(parseInt(ret/day));
+        $("#hour").html(parseInt(ret%day/hour));
+        $("#minute").html(parseInt(ret%hour/min));
+        $("#second").html(parseInt(ret%min/sec));
+    },1000);
+
+    var birthday_year = startDate.getFullYear();
+    var birthday_month = 3;
+    var birthday_day = 10;
+    // 新历 月份需要-1
+
+    var birthDay = chineseLunar.lunarToSolar(birthday_year,birthday_month,birthday_day);
+    var temp_date = new Date();
+    temp_date = new Date(temp_date.getFullYear(),temp_date.getMonth(),temp_date.getDate());
+
+    var count_year = 0;
+    while (((parseFloat(Date.parse(birthDay)) - parseFloat(Date.parse(temp_date))))<0)
+    {
+        count_year++;
+        birthday_year++;
+        birthDay = chineseLunar.lunarToSolar(birthday_year,birthday_month,birthday_day);
+    }
+
+    var leaves_day = parseInt((Date.parse(birthDay) - Date.parse(temp_date))/day);
+    var result = Date.parse(temp_date) - Date.parse(startDate)
+
+    console.log("偷偷的计算");
+    console.log("开始于:"+startDate);
+    console.log("截止于:"+temp_date);
+    console.log("你的生日:"+birthDay);
+    console.log("还有"+leaves_day+"天到一起渡过的第"+count_year+"个生日");
+    console.log("在一起一共"+parseInt(result/day)+"天");
+    console.log(parseInt(result/hour)+"小时");
+    console.log(parseInt(result/min)+"分钟");
+    console.log(parseInt(result/sec)+"秒");
+
+    // Story
+
+    var storyCount = 0;
+    var stories = ["以后我会在这里会记录我们的一点一滴。",
+                   "从2017年6月4日开始,第一次亲你(害羞), ",
+                   "第一个七夕情人节快乐！你到青海旅游, 我在加班!",
+                   "第一个情人节礼物:Ohana萌系少女香水, 瓶子好好看!",
+                   "翻了好多山来到紫云秘境。"];
+
+    function showStory(story) {
+        var list = story.split("");
+        var strList = [];
+        var count = 0;
+        $("#story").animate({
+            "opacity":'0'
+        },400,"linear",function(){
+            $("#story").css("opacity",1);
+        });
+
+        var timer = setInterval(function () {
+            if(list.length > count)
+            {
+                strList.push(list[count]);
+                $("#story").html(strList.join(""));
+                count++;
+            }
+            else
+            {
+                clearInterval(timer);
+                storyCount++;
+            }
+        },1000*4/list.length);
+    }
+
+    function sayStory() {
+        if(storyCount===stories.length)
+        {
+            storyCount = 0;
+        }
+
+        var text = stories[storyCount];
+
+        showStory(text);
+    }
+
+    var timer_story = setInterval(sayStory,1000*5);
+    // 开始讲故事
+    sayStory();
+</script>
+
