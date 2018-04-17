@@ -9,7 +9,10 @@ type: picture
 
 by **Abyss**
 {% endcq %}
-
-<br><br>
+<br>
 
 ---
+
+<p align="right">
+欢迎来到我的博客
+</p>
