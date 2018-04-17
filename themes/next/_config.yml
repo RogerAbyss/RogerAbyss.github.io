@@ -51,7 +51,7 @@ footer:
   icon: user
 
   # If not defined, will be used `author` from Hexo main config.
-  copyright: Abyss, 半吊子iOS工程师, 勤奋的运维工程师, 心理学爱好者。
+  copyright: 
   # -------------------------------------------------------------
   # Hexo link (Powered by Hexo).
   powered: false
@@ -63,7 +63,7 @@ footer:
     version: false
   # -------------------------------------------------------------
   # Any custom text can be defined here.
-  #custom_text: Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>
+  custom_text: 半吊子iOS工程师, 勤奋的运维工程师, 心理学爱好者。
 
 # ---------------------------------------------------------------
 # SEO Settings
@@ -176,8 +176,8 @@ sidebar:
   #  - remove  Totally remove sidebar including sidebar toggle.
   # display: post
   # display: always
-  display: hide
-  #display: remove
+  # display: hide
+  # display: remove
 
   # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
   offset: 12
