@@ -5,7 +5,7 @@ tags: [Linux]
 ---
 
 {% cq %}
-利用ssh config无密码访问服务器
+ssh的妙用
 {% endcq %}
 
 <!-- more -->
