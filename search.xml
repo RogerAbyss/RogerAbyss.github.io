@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title></title>
+    <url>%2F2019%2F04%2F26%2FTop%2F</url>
+    <content type="text"><![CDATA[我要的不是有个人听我过去的故事,而是懂我此刻的心。 by Abyss 欢迎来到我的博客]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Gitlab的管理与维护]]></title>
+    <url>%2F2019%2F02%2F19%2FGitlab%E7%AE%A1%E7%90%86%2F</url>
+    <content type="text"><![CDATA[Gitlab的管理与维护 gitlab 日常操作 gitlab 备份与升级 gitlab runner gitlab日常操作1234567891011121314151617181920212223242526272829303132333435# 启动sudo gitlab-ctl start# 停止sudo gitlab-ctl stop# 重启sudo gitlab-ctl restart# 修改配置vim /etc/gitlab/gitlab.rb# 重新配置生效sudo gitlab-ctl reconfigure# 查看服务器状态sudo gitlab-ctl status# 修改管理员密码sudo gitlab-rails console productionuser = User.where(id: 1).firstuser.password = '新密码'user.password_confirmation = '新密码'user.save!############ 日志相关############ 检查redis的日志sudo gitlab-ctl tail redis# 检查postgresql的日志sudo gitlab-ctl tail postgresql# 检查gitlab-workhorse的日志sudo gitlab-ctl tail gitlab-workhorse# 检查logrotate的日志sudo gitlab-ctl tail logrotate# 检查nginx的日志sudo gitlab-ctl tail nginx# 检查sidekiq的日志sudo gitlab-ctl tail sidekiq# 检查unicorn的日志sudo gitlab-ctl tail unicorn gitlab 备份与升级gitlab runner安装与配置 1 安装 123456789101112# 安装Dockercurl -sSL https://get.docker.com/ | sh# 安装gitlab-runnerdocker run -d --name gitlab-runner --restart always \ -v /srv/gitlab-runner/config:/etc/gitlab-runner \ -v /var/run/docker.sock:/var/run/docker.sock \ gitlab/gitlab-runner:latest# 进入容器sudo docker exec -it gitlab-runner /bin/bash 2 注册 123456789# 在容器内部,运行gitlab-runner run# 在容器内部,运行状态gitlab-runner status# 在容器内部,注册gitlab-runner register 3 pull_policy配置修改 12345# gitlab-runner每次都拉取docke image的解决方法# pull_policy --&gt; if-not-presentvim /srv/gitlab-runner/config/config.tomlvolumes = ["/cache", "&#123;$PATH&#125;"]pull_policy = "if-not-present" 4 开启启动```shellDocker开机启动systemctl enable dockerusermod -aG docker ${your_username}```http://rogerabyss.top/2019/02/19/Gitlab%E7%AE%A1%E7%90%86/]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[利用fsck修复linux文件系统]]></title>
+    <url>%2F2018%2F11%2F09%2F%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%AD%E7%94%B5%E5%BC%95%E8%B5%B7%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[Linux fsck的妙用 12UNEXPECTED INCONSISTENCY: RUN fsck MANUALLY自己公司的服务器, 如果遭遇断电或者异常重启导致了以上界面 fsckfsck [-sACVRP] [-t fstype] [–] [fsck-options] filesys […] filesys: device 名称(eg./dev/sda1)，mount 点 (eg. / 或 /usr) t: 给定档案系统的型式，若在 /etc/fstab 中已有定义或 kernel 本身已支援的则不需加上此参数 s: 依序一个一个地执行 fsck 的指令来检查 A: 对/etc/fstab 中所有列出来的 partition 做检查 C: 显示完整的检查进度 d: 列印 e2fsck 的 debug 结果 p: 同时有 -A 条件时，同时有多个 fsck 的检查一起执行 R: 同时有 -A 条件时，省略 / 不检查 V: 详细显示模式 a: 如果检查有错则自动修复 r: 如果检查有错则由使用者回答是否修复 123456789检查并修复fsck -C /dev/mapper/&#123;xxx&#125;如果检查了每个磁盘均没有发现错误, 可能是没有记录发生过错误,主动跳过。要知道正常T级的磁盘检查7-8个小时也很正常。我们加上-f 强制检查细节fsck -C -f /dev/mapper/&#123;xxx&#125;]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[docker管理mysql]]></title>
+    <url>%2F2018%2F05%2F14%2Fdocker%E7%AE%A1%E7%90%86mysql%2F</url>
+    <content type="text"><![CDATA[Docker的妙用 AdvantageUse Docker can easily install mysql in same enviroment &amp; learn basic usage of docker. 如何使用docker管理mysql docker的基础用法 docker搭建CI docker compose 如何使用docker管理mysql docker 创建并运行mysql, 配置初始化密码 12345docker run --name some-mysql \-e MYSQL_ROOT_PASSWORD=mypwd123 \-p 3306:3306 \-v $PWD/mysql:/var/lib/mysql \-d mysql MYSQL_ROOT_PASSWORD为用户密码, 用户名root 尝试登陆 12345678910111213141516171819202122232425262728293031323334# 进入docker内部docker exec -it container-id /bin/bash# 登陆mysql -uroot -p``` 3. connect mysql(例如:navicat)ip: 服务器ip端口号: 3306用户名: root密码: mypwd123(刚刚设置的)### docker的基础用法```shell# 拉取镜像docker pull $&#123;someimages&#125;# 查看本地镜像docker images# 删除本地镜像docker rmi $&#123;imageId&#125;# 运行Docker (-d 守护进程)docker run -d# 查看运行容器 (-a 所有的,包括已经停止的)docker ps -a# 进入容器调试docker exec -it $&#123;containerid&#125; /bin/bash# 删除容器 (需要停止 或者 -f强制)docker rm $&#123;containerid&#125;docker rm $(docker ps -a -q)# 本地创建imagedocker build -t $&#123;user_name/image_name:version&#125; . docker搭建CICI docker compose]]></content>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[config管理ssh会话]]></title>
+    <url>%2F2018%2F05%2F14%2Fconfig%E7%AE%A1%E7%90%86ssh%E4%BC%9A%E8%AF%9D%2F</url>
+    <content type="text"><![CDATA[ssh的妙用 AdvantageAllow we use just a simple commands connect ours servers. On Linux, it`s especially useful without GUI. whereis config在~/.ssh/下配置config可以管理ssh会话12345678910111213 abyss@Proabyss-macbook-pro-3  ~  tree ~/.ssh/ -L 1/Users/abyss/.ssh/├── config├── ecs.pem├── id_rsa├── id_rsa.pub├── known_hosts├── ppmatch-zgxl├── ppmatch-zgxl.pub├── zgxl-ci├── zgxl-ci.pub├── zgxl-gitlab└── zgxl-gitlab.pub simple commonds一行简短的命令访问服务器123456 abyss@Proabyss-macbook-pro-3  ~  ssh cesLast login: Fri May 4 09:02:23 2018 from 125.84.*.*Welcome to Alibaba Cloud Elastic Compute Service ![root@iZwz9ffj2n0qabqqile246Z ~]# Config如果没有, 生成一个config, 在~/.ssh/文件下12345678910# 服务器别名, ssh server访问Host server # ip地址 HostName 192.168.3.* # ssh端口号 Port 22 # 用户名 User root # 私钥位置 IdentityFile /Users/**/.ssh/id_rsa Config Server服务器,需要配置有我们的公钥。 生成公钥和私钥 1234# 没有则mkdir ssh创建一个cd ~/.ssh# 生成公钥和私钥, 密码可以不设置 *私钥 *.pub公钥ssh-keygen -t rsa 将公钥上传到服务器, 生成authorized_keys 12scp ./*.pub user@216.194.70.*:~/.ssh/cat *.pub &gt;&gt; authorized_keys 管理文件权限 12chmod 700 ~/.ssh/chmod 600 authorized_keys 重启服务器sshd 1service sshd restart]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[你为什么不幸福？]]></title>
+    <url>%2F2018%2F04%2F11%2F%E4%BD%A0%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%B9%B8%E7%A6%8F%2F</url>
+    <content type="text"><![CDATA[人的一切痛苦, 本质上都是对自己的无能的愤怒。 你为什么不幸福？ 现代人的不幸福，是一种普遍的社会现象。大多数时候，人们并不知道自己到底要的是什么。 说到底，整个人类社会，仍旧是建立在人类共同塑造的一种集体意识上。独立意识的存在存疑。即使假定其存在，所谓的独立，也依赖于外界的信息输入和影响。 自然而然，人成了被社会控制和驯化的动物。 现实世界里，人们并不存在真正想要的东西，并不存在能让人获得幸福的东西。人们只是被动的追逐热点，被舆论影响和改造。人们习惯于别人有什么，自己就必须有什么。他们会不加辨别的，把别人拿出来炫耀的手段当成真实的需要，当成自己的追求。 幸福=能力-欲望 每当商家，媒体将精心修饰的虚假泡沫展现在人们的面前时。不管他们是打着爱情，梦想，青春，追求，独立，自由意志，思想领袖的名义。所有，是所有抬高你的欲望，却不一定能提升你能力的劝告和引导，都会让你变得更加不幸。 在这个信息爆炸的社会，媒体，互联网，明星，意见领袖，让大部分人，更加厌弃自己的生活。 心理学上有主观幸福感(SWB), 大致意思是:决定人们是否幸福的并不是实际发生了什么，关键是人们对所发生的事情在情绪上做出何种解释。 就像有很多女性都会抱怨, 和男朋友在一起很久, 没有当初幸福快乐。他能给你的是一场电影的双人票, 一份装裱好的礼物, 一首用心的情歌。但是不能给你不真实存在的你自己主观虚构出来的时刻变化的一种叫幸福感的东西。 你为什么不幸福？或许只是因为,你变了。 引用: 知乎-妄明]]></content>
+      <tags>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[做一个程序员是一种怎么样的体验？]]></title>
+    <url>%2F2016%2F08%2F31%2F%E5%81%9A%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%91%98%E6%98%AF%E4%B8%80%E7%A7%8D%E6%80%8E%E4%B9%88%E6%A0%B7%E7%9A%84%E4%BD%93%E9%AA%8C%2F</url>
+    <content type="text"><![CDATA[可能是因为属羊，所以注定像羊一样温顺内敛不爱争斗。唯一不同的，大概是我不吃草。所以我成为了一名程序员。 by Abyss 做一个程序员是一种怎么样的体验？ 2014，距离毕业还有2个月。我接到一个陌生的电话，我没有投过简历的公司让我去面试。面试很顺利，说顺利是因为面试非常简洁，高效。面试官问了我两个问题,你知道MVC吗？不知道。你知道内存管理的两种方式吗? …有两种啊，不知道。为了缓解这尴尬的气氛，我小声的说，不过我可以在网上查一查… 也许是因为我的机智吧，不出意外的入职了A公司。入职的第一天。一本Objctive-C入门、一台冷冰冰关闭着的电脑和一群各自忙碌着的同事。 总监每天就会说两句话。第一句，今天学习得怎么样了，还需要什么书籍买，给你买。第二句，你不用帮忙，我们很忙没时间教你，自己看看项目。 这是我人生中第一份工作。再此之前我有许多有关于此的猜测。我会遇到这样刻薄的领导，我会怎样的被迫日复一日的做我不热爱的事情。原来都没有，工作可以的是这个样子。 你成功转职成为程序员, lv.1 程序员工资高吗？何止于高。-- “钱多，话少，死得早。” 当时年纪小，喜欢装文艺，现在病好了，只喜欢钱。大多数人都最关心收入问题吧？ 在线招聘平台Hired本月25日公布了一分岗位调查报告，这份报告是他们分析了Hired平台上2016年上半年1848家公司发出的31146份招聘启事得到的。他们从分析中发现，目前硅谷地区产品经理的工资报价最高。在硅谷，程序员的平均年薪大约12.3万美元。而互联网最有”钱途”的职业现在应该是产品经理。 说人话, 国内一个程序员工作三年月薪上万还是很普遍的。即使是在重庆这样的慢城市。 而作为一个有理想有抱负的程序员。还是给自己定个能达到的小目标。比如说，明天早上先买两个鸡汁包子吃。程序员大概都是这样一群只会着眼于现在的傻小子。当初是, 现在也是。 “话少”, 大概来源于此。我们纯粹简单得不会有消费冲动,不会追逐那些4000月薪的所谓时尚编辑,教那些拿着月薪上万的白领们,如何过月薪十万的时尚生活。而经过长期训练的客观逻辑能力越强,对主观情绪变化的捕捉能力越低,相对于直接阐述观点和客观事实,进行无意义的沟通显然更加消耗精力。 “死得早”,如果你想体验,可以来我们公司加几个通宵,兄弟, 随时欢迎。 程序员都在做些什么？人们并不理解你在做什么。 --“连我自己也不知道。” 大多数人都会问，你们这些程序员拿这么高的工资一天都在做些什么？人们并不理解你在做什么，连我自己也不知道… 事情常常是这样的, 老板给了你一个项目，并让你评估了一下项目开发时间。 但当你开始做项目的时候， 你发现一个技术让你非常的感兴趣，并且越挖越深。 最后你发现你用了70%的时间去研究那个让你感兴趣的技术， 最后30%来做整个项目。 当然，如果没有做完，我们可以晚上再加几个班。 工作太重了, 又要加班！贴一个宅在家的图,再举一个例子, 互联网公司福利普遍偏好，免费午餐/晚餐、打车报销、娱乐补贴等等。 我们公司也不例外，我们主要点乡村基。 我们遇到一个问题，行政人员太难统计我们的点餐信息了。 毕竟像我这样点一份烤翅套饭+一对烤翅+一份煎蛋+一杯橙汁的人经常不按常理出牌的人太多了。 机智的我们第二天就写了一个简单的脚本。 这个脚本的功能很简单: 1.统计群里每个人的点餐信息。 2.分发右键到每个人的企业邮箱，确认自己的点餐情况。 3.人工修改后，打印一份点餐清单。 这就是程序员所做的事情，减少重复劳动。有人说这是一个化繁为简的过程，他们是在改变世界。可能我还在路上吧，我还在改BUG。 做程序员需要学些什么？“你只需要终生学习。” 如果你想成为一名程序员了,你可以简单的了解下需要学习什么, 有些人会奇怪,你明明是一个做IOS开发的,为什么会给出一张java编程脑图呢？ 因为我懒啊,刚刚好看到这张图就贴上来了,不服你也干不掉我。 不过呀, 互联网更新快。平均每三年刷新一次技术,你要做程序员,可能这辈子你需要看很多书,你准备好了吗?这大概是很多人做不久的原因吧。 简单的说, 成为程序员你只需要一种技能。学会学习, 学会终生学习。而对于很多人来说, 这最简单的一步犹如天堑。]]></content>
+      <tags>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+</search>
